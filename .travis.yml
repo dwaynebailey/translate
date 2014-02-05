@@ -9,7 +9,7 @@ env:
     - USECPO=0 MINVERSION=1
     - USECPO=0 MINVERSION=
     - USECPO=1
-    #- USECPO=2
+    - USECPO=2
 matrix:
   allow_failures:
     - python: pypy
@@ -18,10 +18,14 @@ matrix:
       env: USECPO=0 MINVERSION=1
     - python: pypy
       env: USECPO=1
+    - python: pypy
+      env: USECPO=2
     - python: 2.6
       env: USECPO=0 MINVERSION=1
     - python: 2.6
       env: USECPO=1
+    - python: 2.6
+      env: USECPO=2
 before_install:
   - sudo apt-get install python-aeidon
 install:
