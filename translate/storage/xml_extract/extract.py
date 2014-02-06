@@ -38,10 +38,9 @@ class Translatable(object):
         self.is_inline = False
         self.dom_node = dom_node
 
-    def _get_placeables(self):
+    @property
+    def placeables(self):
         return [placeable for placeable in self.source if isinstance(placeable, Translatable)]
-
-    placeables = property(_get_placeables)
 
 
 def reduce_unit_tree(f, unit_node, *state):
