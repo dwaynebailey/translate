@@ -131,7 +131,20 @@ class tsunit(lisa.LISAunit):
     source = property(getsource, lisa.LISAunit.setsource)
     rich_source = property(base.TranslationUnit._get_rich_source, base.TranslationUnit._set_rich_source)
 
-    def settarget(self, text):
+    @property
+    def target(self):
+        targetnode = self._gettargetnode()
+        if targetnode is None:
+            etree.SubElement(self.xmlelement, self.namespaced("translation"))
+            return None
+        if self.hasplural():
+            numerus_nodes = targetnode.findall(self.namespaced("numerusform"))
+            return multistring([node.text or u"" for node in numerus_nodes])
+        else:
+            return data.forceunicode(targetnode.text) or u""
+
+    @target.setter
+    def target(self, text):
         # This is a fairly destructive implementation. Don't assume that this
         # is necessarily correct in all regards, but it does deal with a lot of
         # cases. It is hard to deal with plurals.
@@ -163,18 +176,6 @@ class tsunit(lisa.LISAunit):
         else:
             targetnode.text = data.forceunicode(text) or u""
             targetnode.tail = u"\n    "
-
-    def gettarget(self):
-        targetnode = self._gettargetnode()
-        if targetnode is None:
-            etree.SubElement(self.xmlelement, self.namespaced("translation"))
-            return None
-        if self.hasplural():
-            numerus_nodes = targetnode.findall(self.namespaced("numerusform"))
-            return multistring([node.text or u"" for node in numerus_nodes])
-        else:
-            return data.forceunicode(targetnode.text) or u""
-    target = property(gettarget, settarget)
     rich_target = property(base.TranslationUnit._get_rich_target, base.TranslationUnit._set_rich_target)
 
     def hasplural(self):
