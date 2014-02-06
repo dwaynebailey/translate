@@ -280,7 +280,7 @@ class mofile(poheader.poheader, base.TranslationStore):
             target = multistring(input[voffset:voffset + vlength].split("\0"),
                                  encoding=self._encoding)
             newunit = mounit(source)
-            newunit.settarget(target)
+            newunit.target = target
             if context is not None:
                 newunit.msgctxt.append(context)
             self.addunit(newunit)
