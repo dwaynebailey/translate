@@ -40,7 +40,7 @@ class po2tiki:
         for unit in thepofile.units:
             if not (unit.isblank() or unit.isheader()):
                 newunit = tiki.TikiUnit(unit.source)
-                newunit.settarget(unit.target)
+                newunit.target = unit.target
                 locations = unit.getlocations()
                 if locations:
                     newunit.addlocations(locations)

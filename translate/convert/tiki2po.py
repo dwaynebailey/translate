@@ -51,7 +51,7 @@ class tiki2po:
                 continue
             newunit = po.pounit()
             newunit.source = unit.source
-            newunit.settarget(unit.target)
+            newunit.target = unit.target
             locations = unit.getlocations()
             if locations:
                 newunit.addlocations(locations)
