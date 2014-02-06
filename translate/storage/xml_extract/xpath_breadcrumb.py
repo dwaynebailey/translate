@@ -68,11 +68,10 @@ class XPathBreadcrumb(object):
         self._xpath.pop()
         self._tagtally.pop()
 
-    def _get_xpath(self):
+    @property
+    def xpath(self):
 
         def str_component(component):
             tag, pos = component
             return u"%s[%d]" % (tag, pos)
         return u"/".join(str_component(component) for component in self._xpath)
-
-    xpath = property(_get_xpath)
