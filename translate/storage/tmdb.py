@@ -79,8 +79,13 @@ class TMDB(object):
             self._tm_db[current_thread] = (connection, cursor)
         return self._tm_db[current_thread][index]
 
-    connection = property(lambda self: self._get_connection(0))
-    cursor = property(lambda self: self._get_connection(1))
+    @property
+    def connection(self):
+        return self._get_connection(0)
+
+    @property
+    def cursor(self):
+        return self._get_connection(1)
 
     def init_database(self):
         """creates database tables and indices"""
