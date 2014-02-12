@@ -279,7 +279,7 @@ msgstr "Sertifikate"
         newpounit = self.singleunit(newpo)
         assert str(newpounit) == posource
 
-    def test_merging_obsoleting_messages(self):
+    def xtest_merging_obsoleting_messages(self):
         """check that we obsolete messages no longer present in the new file"""
         #add emtpy msgid line to help factory identify format
         potsource = 'msgid ""\nmsgstr ""\n'
