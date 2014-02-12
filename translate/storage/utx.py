@@ -154,7 +154,7 @@ class UtxUnit(base.TranslationUnit):
         return self._set_field('tgt', newtarget)
 
     @targetlang.setter
-    def settargetlang(self, newlang):
+    def targetlang(self, newlang):
         self._dict['target-lang'] = newlang
 
     def __str__(self):

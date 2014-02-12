@@ -273,11 +273,11 @@ class WordfastHeader(object):
         self._header_dict = newheader
 
     @targetlang.setter
-    def settargetlang(self, newlang):
+    def targetlang(self, newlang):
         self._header_dict['target-lang'] = '%%%s' % newlang
 
     @tucount.setter
-    def settucount(self, count):
+    def tucount(self, count):
         self._header_dict['tucount'] = '%%TU=%08d' % count
 
 
