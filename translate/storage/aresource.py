@@ -231,7 +231,7 @@ class AndroidResourceUnit(base.TranslationUnit):
         return text
 
     def setsource(self, source):
-        super(AndroidResourceUnit, self).setsource(source)
+        super(AndroidResourceUnit, self).source = source
 
     def getsource(self, lang=None):
         if (super(AndroidResourceUnit, self).source is None):
