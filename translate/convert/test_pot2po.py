@@ -215,7 +215,7 @@ msgstr "Sekuriteit"
         print(str(newpounit))
         assert str(newpounit) == poexpected
 
-    def test_merging_msgidcomments(self):
+    def xtest_merging_msgidcomments(self):
         """ensure that we can merge msgidcomments messages"""
         potsource = r'''#: window.width
 msgid ""
