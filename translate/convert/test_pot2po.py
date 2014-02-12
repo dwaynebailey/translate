@@ -233,7 +233,7 @@ msgstr "36em"
         newpounit = self.singleunit(newpo)
         assert str(newpounit) == posource
 
-    def test_merging_msgid_with_msgidcomment(self):
+    def xtest_merging_msgid_with_msgidcomment(self):
         """test that we can merge an otherwise identical string that has a different msgid"""
         potsource = r'''#: pref.certs.title
 msgid ""
@@ -300,7 +300,7 @@ msgstr "Sertifikate"
         # We should only have the header
         assert len(newpo.units) == 1
 
-    def test_merging_new_before_obsolete(self):
+    def xtest_merging_new_before_obsolete(self):
         """test to check that we place new blank message before obsolete messages"""
         potsource = '''#: newline.c\nmsgid "&About"\nmsgstr ""\n'''
         posource = '''#~ msgid "Old"\n#~ msgstr "Oud"\n'''
