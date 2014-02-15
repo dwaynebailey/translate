@@ -121,7 +121,8 @@ class tsunit(lisa.LISAunit):
             return not node is None
         return filter(not_none, [self._getsourcenode(), self._gettargetnode()])
 
-    def getsource(self):
+    @property
+    def source(self):
         # TODO: support <byte>. See bug 528.
         sourcenode = self._getsourcenode()
         if self.hasplural():
@@ -129,7 +130,6 @@ class tsunit(lisa.LISAunit):
         else:
             return data.forceunicode(sourcenode.text)
     source = property(getsource, lisa.LISAunit.setsource)
-    rich_source = property(base.TranslationUnit._get_rich_source, base.TranslationUnit._set_rich_source)
 
     @property
     def target(self):
