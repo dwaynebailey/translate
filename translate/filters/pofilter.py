@@ -279,7 +279,7 @@ def cmdlineparser():
     return parser
 
 
-def main():
+def main(argv=None):
     parser = cmdlineparser()
     parser.run()
 

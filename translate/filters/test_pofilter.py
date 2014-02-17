@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from translate.convert import test_convert
 from translate.filters import checks, pofilter
 from translate.misc import wStringIO
 from translate.storage import factory, xliff
@@ -294,3 +295,10 @@ class TestTMXFilter(BaseTestFilter):
     def test_isreview(self):
         """TMX doesn't support review"""
         pass
+
+class TestPoFilterCommand(test_convert.TestConvertCommand):
+
+    convertmodule = pofilter
+
+    def test_listfilters(self):
+        assert self.run_command_stdout(listfilters=True)
