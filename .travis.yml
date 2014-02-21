@@ -42,7 +42,7 @@ script:
   - python -m compileall -q -f .
   - python setup.py --quiet build
   - if [[ $TRAVIS_PYTHON_VERSION != 'pypy' ]]; then py.test --cov=. -r EfsxX; fi
-  - if [[ $TRAVIS_PYTHON_VERSION == 'pypy' -o $USECPO -eq 1 -o $USECPO -eq 2 ]]; then py.test --boxed -r EfsxX; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 'pypy' || $USECPO -eq 1 || $USECPO -eq 2 ]]; then py.test --boxed -r EfsxX; fi
   - ./tools/pep8.sh travis
   # -W report warnings as errors when building docs
   - cd docs; make SPHINXOPTS=-W html
