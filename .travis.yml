@@ -13,6 +13,8 @@ env:
 matrix:
   allow_failures:
     - python: pypy
+    - env: USECPO=1
+    - env: USECPO=2
   exclude:
     - python: pypy
       env: USECPO=0 MINVERSION=1
