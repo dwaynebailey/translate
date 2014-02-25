@@ -81,6 +81,7 @@ packages = ["translate"]
 translatescripts = [join(*('translate', ) + script) for script in [
                   ('convert', 'pot2po'),
                   ('convert', 'moz2po'), ('convert', 'po2moz'),
+                  ('convert', 'mozlang2po'), ('convert', 'po2mozlang'),
                   ('convert', 'oo2po'), ('convert', 'po2oo'),
                   ('convert', 'oo2xliff'), ('convert', 'xliff2oo'),
                   ('convert', 'prop2po'), ('convert', 'po2prop'),
