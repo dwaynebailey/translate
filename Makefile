@@ -5,12 +5,15 @@ VERSION=$(shell python setup.py --version)
 FULLNAME=$(shell python setup.py --fullname)
 SFUSERNAME=$(shell egrep -A5 sourceforge ~/.ssh/config | egrep -m1 User | cut -d" " -f2)
 
-.PHONY: all build docs requirements help publish sort-imports test-publish
+.PHONY: all build check-manifest docs requirements help publish sort-imports test-publish
 
 all: help
 
 build: docs
 	python setup.py sdist ${FORMATS}
+
+check-manifest:
+	check-manifest
 
 docs:
 	# The following creates the HTML docs.
@@ -39,6 +42,7 @@ help:
 	@echo "----"
 	@echo
 	@echo "  build - create sdist with required prep"
+	@echo "  check-manifest - validate MANIFEST.in"
 	@echo "  requirements - (re)generate pinned and minimum requirements"
 	@echo "  sort-imports - sort Python imports"
 	@echo "  publish-pypi - publish on PyPI"

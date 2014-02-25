@@ -30,6 +30,7 @@ install:
 script:
   # Compile all the files
   - python -m compileall -q -f .
+  - make check-manifest
   - python setup.py --quiet build
   - if [[ $TRAVIS_PYTHON_VERSION != 'pypy' ]]; then py.test --cov=. -r EfsxX; fi
   - if [[ $TRAVIS_PYTHON_VERSION == 'pypy' ]]; then py.test --boxed -r EfsxX; fi

@@ -1,5 +1,6 @@
 -r optional.txt
 
+check-manifest
 pytest>=2.2
 pytest-cov
 pytest-xdist
