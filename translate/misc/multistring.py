@@ -76,11 +76,12 @@ class multistring(autoencode.autoencode):
 
     def replace(self, old, new, count=None):
         if count is None:
-            newstr = multistring(super(multistring, self) \
-                   .replace(old, new), self.encoding)
+            newstr = multistring(super(multistring, self).replace(old, new),
+                                 self.encoding)
         else:
-            newstr = multistring(super(multistring, self) \
-                   .replace(old, new, count), self.encoding)
+            newstr = multistring(super(multistring, self).replace(old, new,
+                                                                  count),
+                                 self.encoding)
         for s in self.strings[1:]:
             if count is None:
                 newstr.strings.append(s.replace(old, new))

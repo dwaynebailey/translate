@@ -1869,8 +1869,8 @@ def runtests(str1, str2, ignorelist=()):
     failures = checker.run_filters(unit)
 
     for test in failures:
-        print("failure: %s: %s\n  %r\n  %r" % \
-              (test, failures[test]['message'], str1, str2))
+        print("failure: %s: %s\n  %r\n  %r" % (test, failures[test]['message'],
+                                               str1, str2))
 
     return failures
 
