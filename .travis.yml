@@ -1,41 +1,20 @@
-# https://travis-ci.org/#!/translate/translate
 language: python
-python:
-  - 2.6
-  - 2.7
-  - pypy
+python: 2.7
 env:
-  matrix:
-    - USECPO=0 MINVERSION=1
-    - USECPO=0 MINVERSION=
-    #- USECPO=1
-    #- USECPO=2
+  - TOX_ENV=py26
+  - TOX_ENV=py27
+  - TOX_ENV=py33
+  - TOX_ENV=docs
+  - TOX_ENV=flake8
 matrix:
   allow_failures:
-    - python: pypy
-  exclude:
-    - python: pypy
-      env: USECPO=0 MINVERSION=1
-    - python: 2.6
-      env: USECPO=0 MINVERSION=1
+    - python: TOX_ENV=py33
 before_install:
   - sudo apt-get install python-aeidon
 install:
-  - pip install coveralls
-  - if [[ $MINVERSION ]]; then make requirements/min-versions.txt; cat requirements/min-versions.txt; pip install -r requirements/min-versions.txt; pip install --upgrade pytest; fi
-  - if [[ ! $MINVERSION ]]; then pip install -r requirements/dev.txt; fi
-  - if [[ $TRAVIS_PYTHON_VERSION == 'pypy' ]]; then pip install --upgrade --pre lxml; fi
-  # Still need to handle with indexing engines
-  - pip freeze
+  - pip install tox
 script:
-  # Compile all the files
-  - python -m compileall -q -f .
-  - python setup.py --quiet build
-  - if [[ $TRAVIS_PYTHON_VERSION != 'pypy' ]]; then py.test --cov=. -r EfsxX; fi
-  - if [[ $TRAVIS_PYTHON_VERSION == 'pypy' ]]; then py.test --boxed -r EfsxX; fi
-  - ./tools/pep8.sh travis
-  # -W report warnings as errors when building docs
-  - cd docs; make SPHINXOPTS=-W html; cd ..
+  - tox -e $TOX_ENV
 after_success:
   coveralls
 notifications:
