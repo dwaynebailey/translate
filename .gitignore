@@ -31,6 +31,9 @@ requirements/min-versions.txt
 # Coverage
 .coverage*
 
+# tox
+.tox
+
 ##############################
 # translate/ specific excludes
 ##############################
