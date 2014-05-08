@@ -438,23 +438,32 @@ multiline property
 ###############################################################################
 11 = \uABCD
         """
-        propfile = self.propparse(propsource)
-        assert len(propfile.units) == 11
-        for i, (key, value, xfail) in enumerate([('1', 'abc', False),
-                                          ('2', 'xy', True),
-                                          ('3', u'\u1234\t\r\n\u00AB\u0001\n', True),
-                                          ('4', 'this is multiline property', False),
-                                          ('5', 'this is another multiline property', True),
-                                          ('6', 'test\u0036', True),
-                                          ('7', 'yet another multiline propery', True),
-                                          ('8', u'\ttest5\u0020', True),
-                                          ('9', ' test6\t', True),
-                                          (u'10a\u1234b', u'c\uCDEFd', True),
-                                          ('11', u'\uABCD', True),
-                                          ]):
+        propjava = self.propparse(propsource)
+        propmozilla = self.propparse(propsource, personality='mozilla')
+        assert len(propjava.units) == 11
+        assert len(propmozilla.units) == 11
+        # key, expected java value, expected Mozilla value/None if same,
+        # expected to fail (T/F)
+        for i, (key, valuejava, valuemoz, xfail) in enumerate(
+                [('1', 'abc', None, False),
+                 ('2', 'xy\t', 'xy', False),
+                 ('3', u'\u1234\t\r\n\u00AB\u0001\n', None, True),
+                 ('4', 'this is multiline property', None, False),
+                 ('5', 'this is another multiline property', None, True),
+                 ('6', 'test\u0036', None, True),
+                 ('7', 'yet another multiline propery', None, True),
+                 ('8', u'\ttest5\u0020', None, True),
+                 ('9', ' test6\t', None, True),
+                 (u'10a\u1234b', u'c\uCDEFd', None, True),
+                 ('11', u'\uABCD', None, True),
+                ]):
             if xfail:
                 continue
-            propunit = propfile.units[i]
-            print i, key, value, propunit.name, repr(propunit.source)
-            assert propunit.name == key
-            assert propunit.source == value
+            if valuemoz is None:
+                valuemoz = valuejava
+            propunitj = propjava.units[i]
+            propunitm = propmozilla.units[i]
+            print i, key, valuejava, valuemoz, propunitm.name, repr(propunitm.source)
+            assert propunitm.name == key
+            assert propunitm.source == valuemoz
+            assert propunitj.source == valuejava

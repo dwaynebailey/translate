@@ -355,6 +355,14 @@ class DialectMozilla(DialectJavaUtf8):
     name = "mozilla"
     delimiters = [u"="]
 
+    @classmethod
+    def value_strip(cls, value):
+        """Strip unneeded characters from the value
+
+        Mozilla strips all leading and trailing whitespace.
+        """
+        return value.strip()
+
 
 @register_dialect
 class DialectGaia(DialectMozilla):
