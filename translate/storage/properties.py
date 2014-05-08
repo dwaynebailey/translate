@@ -584,7 +584,7 @@ class propfile(base.TranslationStore):
                 if inmultilinevalue:
                     # strip the backslash
                     newunit.value = newunit.value[:-1]
-                if not inmultilinevalue:
+                else:
                     # we're finished, add it to the list...
                     self.addunit(newunit)
                     newunit = propunit("", self.personality.name)
