@@ -178,14 +178,14 @@ msgstr "Bézier-kurwe"
 
     def test_typecomments(self):
         """Tests that others comments are imported."""
-        minipo = u'''#, csharp-format
+        minipo = u'''#, c-format
 msgid "Bézier curve"
 msgstr "Bézier-kurwe"
 '''
         tmx = self.po2tmx(minipo, comment='type')
         print(bytes(tmx))
         unit = tmx.findunits(u"Bézier curve")
-        assert unit[0].getnotes() == u"csharp-format"
+        assert unit[0].getnotes() == u"c-format"
 
 
 class TestPO2TMXCommand(test_convert.TestConvertCommand, TestPO2TMX):
