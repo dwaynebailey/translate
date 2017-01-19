@@ -15,6 +15,7 @@ install:
   # We need wheel installed to build wheels
   - "python.exe -m pip install wheel"
   - "python.exe -m pip install codecov"
+  - "python.exe -m pip install lxml==3.6.0"
   - "python.exe -m pip install -r requirements/dev.txt"
 
 build: off
