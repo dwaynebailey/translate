@@ -7,6 +7,8 @@ python:
   - 3.4
   - 3.5
   - 3.6
+  - "pypy"
+  - "pypy3"
 env:
   matrix:
     - USECPO=0 MINVERSION=1 META=
@@ -40,6 +42,22 @@ matrix:
       env: USECPO=0 MINVERSION=1 META=1
     - python: 3.6
       env: USECPO=0 MINVERSION= META=1
+    - python: "pypy"
+      env: USECPO=0 MINVERSION=1 META=
+    - python: "pypy"
+      env: USECPO=0 MINVERSION=1 META=1
+    - python: "pypy"
+      env: USECPO=0 MINVERSION= META=1
+    - python: "pypy"
+      env: USECPO=1 MINVERSION= META=
+    - python: "pypy3"
+      env: USECPO=0 MINVERSION=1 META=
+    - python: "pypy3"
+      env: USECPO=0 MINVERSION=1 META=1
+    - python: "pypy3"
+      env: USECPO=0 MINVERSION= META=1
+    - python: "pypy3"
+      env: USECPO=1 MINVERSION= META=
   allow_failures:
     - python: 2.7
       env: USECPO=1 MINVERSION= META=
